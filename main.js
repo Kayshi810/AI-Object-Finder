@@ -14,7 +14,7 @@ function start()
 {
 objectDetector=ml5.objectDetector('cocossd',modelloaded); 
 document.getElementById("status").innerHTML="Status : Detecting Objects";
-document.getElementById("object_name").value;
+objects = document.getElementById("object_name").value;
 }
 
 function modelloaded() 
@@ -55,7 +55,7 @@ function draw()
             rect(objects[i].x, objects[i].y, objects[i].width, objects[i].height);
   
            
-            if(objects[i].label == objects_detected)
+            if(objects[i].label == objects)
             {
               objectDetector.detect(gotResult);
               document.getElementById("object_name").innerHTML = object_name + " Found";
