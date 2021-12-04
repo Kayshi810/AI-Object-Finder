@@ -1,5 +1,6 @@
 status="";
 objects=[];
+input_name="";
 
 function setup() 
 {
@@ -14,7 +15,7 @@ function start()
 {
 objectDetector=ml5.objectDetector('cocossd',modelloaded); 
 document.getElementById("status").innerHTML="Status : Detecting Objects";
-objects = document.getElementById("object_name").value;
+input_name = document.getElementById("object_name").value;
 }
 
 function modelloaded() 
@@ -55,17 +56,17 @@ function draw()
             rect(objects[i].x, objects[i].y, objects[i].width, objects[i].height);
   
            
-            if(objects[i].label == objects)
+            if(objects[i].label == input_name)
             {
-              objectDetector.detect(gotResult);
-              document.getElementById("object_name").innerHTML = object_name + " Found";
+              objectDetector.detect(gotResults);
+              document.getElementById("object_detected").innerHTML = input_name + " Found";
               synth = window.speechSynthesis;
-              utterThis = new SpeechSynthesisUtterance(object_name + "Found");
+              utterThis = new SpeechSynthesisUtterance(input_name + "Found");
               synth.speak(utterThis);
             }
             else
             {
-              document.getElementById("object_name").innerHTML = object_name + " Not Found";
+              document.getElementById("object_detected").innerHTML = input_name + " Not Found";
             }          
            }
         }
